@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>실습 2. Figma Make로 웹사이트 만들기</title>
+  <style>
+    :root{
+      --purple:#6d28d9;
+      --purple2:#7c3aed;
+      --blue:#2563eb;
+      --cyan:#0891b2;
+      --green:#059669;
+      --navy:#0f172a;
+      --text:#111827;
+      --muted:#5b6475;
+      --line:#d7dce8;
+      --soft:#f7f8fc;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:"Pretendard","Noto Sans KR",Arial,sans-serif;
+      color:var(--text);
+      background:#fff;
+      line-height:1.65;
+    }
+    .wrap{
+      width:min(1120px, calc(100% - 56px));
+      margin:0 auto;
+      padding:44px 0 80px;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:900;
+      color:#fff;
+      padding:8px 14px 8px 9px;
+      border-radius:10px;
+      font-size:20px;
+      margin-bottom:10px;
+      box-shadow:0 8px 18px rgba(109,40,217,.22);
+    }
+    .badge.mission{background:linear-gradient(135deg,#5b21b6,#8b5cf6)}
+    .badge.practice{background:linear-gradient(135deg,#0891b2,#14b8a6)}
+    .badge .icon{
+      width:34px;height:34px;border-radius:50%;
+      display:inline-flex;align-items:center;justify-content:center;
+      background:#26115f;color:#ffe75c;font-size:20px;
+    }
+    .badge.practice .icon{background:#083344;color:#8ff7ff}
+    h1{
+      margin:0 0 20px;
+      font-size:38px;
+      letter-spacing:-.04em;
+      line-height:1.22;
+    }
+    h2{
+      margin:0 0 14px;
+      font-size:29px;
+      letter-spacing:-.035em;
+    }
+    h3{
+      margin:0 0 10px;
+      font-size:22px;
+      letter-spacing:-.025em;
+    }
+    p{margin:0 0 16px}
+    .lead{
+      font-size:21px;
+      color:#222;
+      margin-bottom:20px;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:17px;
+    }
+    .divider{
+      border:0;
+      border-top:1px solid #aeb4c0;
+      margin:30px 0 28px;
+    }
+    .section{margin:0 0 34px}
+    .mission-box{
+      background:linear-gradient(135deg,#fbfbff,#f1edff);
+      border:1px solid #e7ddff;
+      border-radius:22px;
+      padding:28px 30px;
+      margin:6px 0 30px;
+    }
+    .mission-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+      margin-top:20px;
+    }
+    .mini-card{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:18px;
+      padding:18px;
+      box-shadow:0 10px 24px rgba(15,23,42,.06);
+      font-weight:800;
+    }
+    .mini-card span{
+      display:block;
+      color:var(--muted);
+      font-weight:500;
+      margin-top:6px;
+      font-size:14px;
+    }
+    .practice-title{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      margin-bottom:16px;
+    }
+    .stepnum{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:38px;height:38px;border-radius:12px;
+      background:#111827;color:#fff;font-weight:900;
+    }
+    .step-card{
+      background:#fff;
+      border:1px solid #e5e7eb;
+      border-radius:24px;
+      padding:24px;
+      margin-top:18px;
+      box-shadow:0 10px 28px rgba(15,23,42,.06);
+    }
+    .btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:16px;
+    }
+    .btn{
+      border:0;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:13px 18px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:15px;
+      text-decoration:none;
+      color:#fff;
+      background:var(--purple2);
+      cursor:pointer;
+      box-shadow:0 10px 22px rgba(124,58,237,.22);
+    }
+    .btn.blue{background:#2563eb;box-shadow:0 10px 22px rgba(37,99,235,.22)}
+    .btn.green{background:#059669;box-shadow:0 10px 22px rgba(5,150,105,.20)}
+    .note{
+      background:#fff7ed;
+      border-left:6px solid #f59e0b;
+      border-radius:14px;
+      padding:16px 18px;
+      margin-top:18px;
+      color:#9a3412;
+      font-weight:800;
+    }
+    .info{
+      background:#eef2ff;
+      border-left:6px solid #6366f1;
+      border-radius:14px;
+      padding:16px 18px;
+      margin-top:18px;
+      color:#3730a3;
+      font-weight:800;
+    }
+    .screenshot{
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid #d7dce8;
+      background:#f8fafc;
+      box-shadow:0 16px 36px rgba(15,23,42,.12);
+      margin-top:18px;
+    }
+    .screenshot video{
+      width:100%;
+      display:block;
+    }
+    .caption{
+      padding:14px 16px;
+      background:#f9fafb;
+      border-top:1px solid #e5e7eb;
+      color:#4b5563;
+      font-size:15px;
+    }
+    .checklist{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-top:18px;
+    }
+    .check{
+      background:#fafafa;
+      border:1px solid #e5e7eb;
+      border-radius:16px;
+      padding:14px 16px;
+      font-weight:800;
+    }
+    .prompt-sample{
+      background:#111827;
+      color:#f8fafc;
+      border-radius:18px;
+      padding:18px;
+      margin-top:16px;
+      font-family:"Consolas","Courier New",monospace;
+      white-space:pre-wrap;
+      line-height:1.65;
+    }
+    @media(max-width:860px){
+      .wrap{width:min(100% - 28px,1120px);padding-top:28px}
+      h1{font-size:30px}
+      .mission-grid,.checklist{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="section">
+      <div class="badge mission"><span class="icon">★</span> 미션</div>
+      <h1>Figma Make로 웹사이트 만들기</h1>
+      <p class="lead">실습 1에서 완성한 프롬프트를 활용해 첫 번째 웹사이트 초안을 만들어 봅시다.</p>
+
+      <div class="mission-box">
+        <p>
+          이번 실습에서는 Figma Make에 접속해 프롬프트를 입력하고,
+          AI가 웹사이트를 생성하는 과정을 확인합니다.
+          완성된 화면을 보며 내가 요청한 <b>기능, 콘텐츠, 디자인</b>이 잘 반영되었는지 점검해 봅시다.
+        </p>
+        <div class="mission-grid">
+          <div class="mini-card">1. Figma Make 접속<span>Google 계정으로 로그인하기</span></div>
+          <div class="mini-card">2. 프롬프트 입력<span>실습 1 최종 프롬프트 붙여넣기</span></div>
+          <div class="mini-card">3. 결과 확인<span>생성된 웹사이트 초안 점검하기</span></div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="section">
+      <div class="badge practice"><span class="icon">&lt;/&gt;</span> 실습</div>
+
+      <div class="practice-title">
+        <span class="stepnum">1</span>
+        <h2>Figma Make 접속하기</h2>
+      </div>
+      <p class="sub">
+        아래 버튼을 눌러 Figma Make에 접속하세요. Figma Make를 사용하려면 Google 계정 로그인이 필요합니다.
+      </p>
+      <div class="btns">
+        <a class="btn blue" href="https://www.figma.com/ko-kr/make/" target="_blank" rel="noopener">Figma Make 바로가기</a>
+      </div>
+      <div class="note">
+        로그인 안내: 학교 계정 또는 개인 Google 계정으로 로그인합니다. 수업 전 Google 로그인이 가능한 환경인지 확인해 주세요.
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="section">
+      <div class="practice-title">
+        <span class="stepnum">2</span>
+        <h2>프롬프트 입력하고 웹사이트 생성하기</h2>
+      </div>
+      <p class="sub">
+        실습 1에서 만든 최종 프롬프트를 복사해 Figma Make 입력창에 붙여넣습니다.
+        입력 후 생성 버튼을 누르면 AI가 웹사이트 초안을 만들기 시작합니다.
+      </p>
+
+      <div class="step-card">
+        <h3>입력할 프롬프트 예시</h3>
+        <div class="prompt-sample">중학생 친구들이 재미있게 사용할 수 있는 '스낵BTI' 웹사이트를 만들어줘.
+
+이 웹사이트는 사용자의 MBTI에 어울리는 편의점 간식을 추천해 주는 사이트야.
+
+웹사이트에는 다음 내용을 포함해줘.
+- MBTI를 선택할 수 있는 큰 버튼
+- MBTI 유형별 추천 간식 결과 페이지
+- 추천 이유와 오늘의 한 줄 평
+- 친구들과 결과를 공유할 수 있는 공유하기 버튼
+
+디자인은 밝고 귀엽고 친근한 분위기로 만들어줘.
+결과 페이지는 카드형 디자인으로 구성해줘.</div>
+      </div>
+
+      <div class="screenshot">
+        <video src="scene1.mp4" controls autoplay muted loop playsinline></video>
+        <div class="caption">
+          화면 1. 프롬프트를 입력하면 Figma Make가 요청 내용을 바탕으로 웹사이트 구조와 화면을 생성합니다.
+          이 단계에서는 내가 작성한 프롬프트가 구체적일수록 원하는 결과에 가까워집니다.
+        </div>
+      </div>
+
+      <div class="info">
+        확인할 점: 웹사이트 이름, 핵심 기능, 원하는 디자인이 프롬프트에 빠짐없이 들어갔는지 확인하세요.
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="section">
+      <div class="practice-title">
+        <span class="stepnum">3</span>
+        <h2>완성된 웹사이트 초안 확인하기</h2>
+      </div>
+      <p class="sub">
+        AI가 만든 웹사이트 초안을 살펴보고, 내가 의도한 기능과 디자인이 잘 반영되었는지 점검합니다.
+        완벽하지 않아도 괜찮습니다. 다음 단계에서 수정 요청을 통해 더 발전시킬 수 있습니다.
+      </p>
+
+      <div class="screenshot">
+        <video src="scene2.mp4" controls autoplay muted loop playsinline></video>
+        <div class="caption">
+          화면 2. 생성된 웹사이트 초안입니다. 제목, 주요 섹션, 버튼, 카드형 구성 등 프롬프트에 작성한 요소가 어떻게 반영되었는지 확인합니다.
+        </div>
+      </div>
+
+      <div class="checklist">
+        <div class="check">□ 웹사이트 목적이 잘 드러나나요?</div>
+        <div class="check">□ 핵심 기능이 화면에 보이나요?</div>
+        <div class="check">□ 디자인 분위기가 의도와 비슷한가요?</div>
+        <div class="check">□ 추가하거나 고치고 싶은 부분이 있나요?</div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="section">
+      <div class="practice-title">
+        <span class="stepnum">4</span>
+        <h2>다음 실습 준비하기</h2>
+      </div>
+      <p class="sub">
+        생성된 웹사이트를 확인했다면, 수정하고 싶은 부분을 1~2개 적어 봅시다.
+        다음 실습에서는 AI에게 수정 요청을 하며 결과물을 더 완성도 있게 발전시켜 볼 수 있습니다.
+      </p>
+      <div class="note">
+        예시 수정 요청: "결과 페이지를 더 귀엽게 바꿔줘", "공유하기 버튼을 더 눈에 띄게 만들어줘", "간식 추천 카드를 4개로 늘려줘"
+      </div>
+    </section>
+  </main>
+</body>
+</html>
